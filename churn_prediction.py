@@ -10,7 +10,7 @@ df = pd.read_csv("customer-Churn.csv")
 print(f"Dataset shape: {df.shape}")
 print(df.head())
 
-# 2️⃣ Basic cleaning
+# 2️⃣ Basic cleaning of data
 # Remove customerID since it's not useful for prediction
 df.drop("customerID", axis=1, inplace=True)
 
