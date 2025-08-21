@@ -53,3 +53,5 @@ plt.figure(figsize=(6,4))
 sns.boxplot(x="Churn", y="MonthlyCharges", data=df)
 plt.title("Monthly Charges by Churn Status")
 plt.show()
+
+#yiu can
