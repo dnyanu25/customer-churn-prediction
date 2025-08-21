@@ -17,7 +17,7 @@ df.drop("customerID", axis=1, inplace=True)
 # Convert TotalCharges to numeric (some may have spaces)
 df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
 
-# Handle missing values
+# Handle missing values fill if absent 
 df.fillna(0, inplace=True)
 
 # 3️⃣ Encode categorical variables
@@ -34,7 +34,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = LogisticRegression(max_iter=1000)
 model.fit(X_train, y_train)
 
-# 7️⃣ Predictions
+# 7️⃣ Predictions (predict)
 y_pred = model.predict(X_test)
 
 # 8️⃣ Evaluation
