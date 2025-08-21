@@ -54,4 +54,4 @@ sns.boxplot(x="Churn", y="MonthlyCharges", data=df)
 plt.title("Monthly Charges by Churn Status")
 plt.show()
 
-#yiu can
+#you can enhance 
