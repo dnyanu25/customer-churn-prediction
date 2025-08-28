@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix
 
-# 1️⃣ Load the dataset.
+# 1️⃣ Load the dataset
 df = pd.read_csv("customer-Churn.csv")
 print(f"Dataset shape: {df.shape}")
 print(df.head())
