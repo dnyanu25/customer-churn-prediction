@@ -1,0 +1,81 @@
+# The pandas library is essential for data manipulation and analysis.
+import pandas as pd
+# The seaborn library is used for creating informative and attractive statistical graphics.
+import seaborn as sns
+# The matplotlib.pyplot library is used for creating static, animated, and interactive visualizations.
+import matplotlib.pyplot as plt
+# train_test_split is a function from scikit-learn used to split arrays or matrices into random train and test subsets.
+from sklearn.model_selection import train_test_split
+# LogisticRegression is a machine learning model from scikit-learn used for classification.
+from sklearn.linear_model import LogisticRegression
+# classification_report and confusion_matrix are metrics from scikit-learn used to evaluate the performance of a classification model.
+from sklearn.metrics import classification_report, confusion_matrix
+
+# 1️⃣ Load the dataset
+# Read the CSV file "customer-Churn.csv" into a pandas DataFrame named 'df'.
+df = pd.read_csv("customer-Churn.csv")
+# Print the shape (number of rows and columns) of the DataFrame.
+print(f"Dataset shape: {df.shape}")
+# Print the first 5 rows of the DataFrame to get a quick overview of the data.
+print(df.head())
+
+# 2️⃣ Basic cleaning of data
+# Drop the 'customerID' column as it's a unique identifier and not useful for prediction. The 'axis=1' specifies that we are dropping a column, and 'inplace=True' modifies the DataFrame directly.
+df.drop("customerID", axis=1, inplace=True)
+
+# Convert the 'TotalCharges' column to a numeric data type. 'errors="coerce"' will turn any non-numeric values into NaN (Not a Number).
+df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
+
+# Fill any missing values (NaN) in the entire DataFrame with 0.
+df.fillna(0, inplace=True)
+
+# 3️⃣ Encode categorical variables
+# Convert categorical columns into numerical dummy/indicator variables. 'drop_first=True' drops the first category of each feature to avoid multicollinearity.
+df_encoded = pd.get_dummies(df, drop_first=True)
+
+# 4️⃣ Split into features (X) and target (y)
+# Create a new DataFrame 'X' containing all columns except 'Churn_Yes', which will be our features.
+X = df_encoded.drop("Churn_Yes", axis=1)
+# Create a Series 'y' containing only the 'Churn_Yes' column, which will be our target variable.
+y = df_encoded["Churn_Yes"]
+
+# 5️⃣ Train-test split
+# Split the data into training and testing sets. 80% of the data will be used for training, and 20% for testing. 'random_state=42' ensures that the split is reproducible.
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 6️⃣ Train a Logistic Regression model
+# Create an instance of the Logistic Regression model. 'max_iter=1000' increases the number of iterations for the model to converge.
+model = LogisticRegression(max_iter=1000)
+# Train the model using the training data.
+model.fit(X_train, y_train)
+
+# 7️⃣ Predictions (predict)
+# Use the trained model to make predictions on the test set.
+y_pred = model.predict(X_test)
+
+# 8️⃣ Evaluation
+# Print the confusion matrix, a table that shows the number of correct and incorrect predictions made by the classification model compared to the actual outcomes.
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+# Print the classification report, which provides key metrics like precision, recall, and F1-score for each class.
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# 9️⃣ Simple EDA visualization
+# Create a new figure with a specified size.
+plt.figure(figsize=(6,4))
+# Create a count plot to visualize the distribution of the 'Churn' column.
+sns.countplot(x="Churn", data=df)
+# Set the title of the plot.
+plt.title("Customer Churn Distribution")
+# Display the plot.
+plt.show()
+
+# Create a new figure with a specified size.
+plt.figure(figsize=(6,4))
+# Create a box plot to show the distribution of 'MonthlyCharges' for each 'Churn' category.
+sns.boxplot(x="Churn", y="MonthlyCharges", data=df)
+# Set the title of the plot.
+plt.title("Monthly Charges by Churn Status")
+# Display the plot.
+plt.show()
