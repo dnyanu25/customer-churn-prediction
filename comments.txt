@@ -12,7 +12,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix
 
 # 1️⃣ Load the dataset
-# Read the CSV file "customer-Churn.csv" into a pandas DataFrame named 'df'.
+# Read the CSV file "customer-Churn.csv" into a pandas DataFrame named 'df'
 df = pd.read_csv("customer-Churn.csv")
 # Print the shape (number of rows and columns) of the DataFrame.
 print(f"Dataset shape: {df.shape}")
