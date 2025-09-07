@@ -14,7 +14,7 @@ print(df.head())
 # Remove customerID since it's not useful for prediction.
 df.drop("customerID", axis=1, inplace=True)
 
-# Convert TotalCharges to numeric (some may have spaces)
+# Convert TotalCharges to numeric ( some may have spaces)
 df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
 
 # Handle missing values fill if absent 
