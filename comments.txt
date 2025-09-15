@@ -1,4 +1,4 @@
-# The pandas library is essential for data manipulation and analysis.
+# The pandas library is essential for data manipulation and analysis. 
 import pandas as pd
 # The seaborn library is used for creating informative and attractive statistical graphics.
 import seaborn as sns
