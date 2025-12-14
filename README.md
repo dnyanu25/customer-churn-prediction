@@ -34,7 +34,10 @@ customer-churn-prediction/
 
 
 
-## 📦 Installation
+
+---
+## 📦 Installation & Usage
+
 ```bash
 # Clone the repository
 git clone https://github.com/dnyanu25/customer-churn-prediction.git
@@ -45,19 +48,9 @@ cd customer-churn-prediction
 # Install dependencies
 pip install pandas numpy scikit-learn matplotlib seaborn
 
-#Usage
+# Run the project
 python churn_prediction.py
 
 
-
-
-
-
-
-
-
-
-
-
-Ask ChatGPT
+```
 
